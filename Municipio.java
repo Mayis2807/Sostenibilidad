@@ -33,4 +33,9 @@ public class Municipio {
     public void setCodigo(String codigo) {
         Codigo = codigo;
     }
+
+    @Override
+    public String toString() {
+        return "Municipio: " + Territorio + ", Valor: " + Valor;
+    }
 }
