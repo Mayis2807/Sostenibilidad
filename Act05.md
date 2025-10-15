@@ -35,17 +35,17 @@ Año;Tipo territorio;Código territorio;Territorio;Valor;Estado dato
 ## Salida esperada
 
 ```bash
-Territorio: Brunete
-Valor: 2608
-Código: 0262
+Territorio: Tielmes
+Valor: 3741
+Código: 1467
 
-Territorio: Pinto
-Valor: 2602
-Código: 1132
+Territorio: Nuevo Bazt?n
+Valor: 3663
+Código: 1006
 
-Territorio: Talamanca de Jarama
-Valor: 2582
-Código: 1454
+Territorio: Torres de la Alameda
+Valor: 3607
+Código: 1548
 ```
 
 ## Solución implementada

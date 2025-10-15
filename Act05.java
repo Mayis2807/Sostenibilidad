@@ -7,21 +7,23 @@ public static void main (String []args) throws IOException {
 
     try {
 
-        // Leer archivo
+        // Abrir el archivo CSV
         File f = new File ("viviendas-por-intensidad-de-uso-a-partir-del-consumo-electrico.-mediana-consumo-anual.csv");
         FileReader csv = new FileReader (f);
         
+        // Leer el archivo CSV
         BufferedReader br = new BufferedReader (csv);
         
+        // Leer línea por línea
         String linea;
         br.readLine();
         
-        // Crear lista de municipios 
+        // Crear una lista para almacenar los municipios
         ArrayList<Municipio> Municipios = new ArrayList<>();
         
-        // Leer linea por linea
+        // Procesar cada línea del archivo
         while ((linea = br.readLine()) != null ) {
-            // Separar con split
+            // Dividir la línea en campos
             String [] datos = linea.split (";");
             String Año = datos[0];
             String TipoTer = datos[1];
@@ -30,19 +32,18 @@ public static void main (String []args) throws IOException {
             String Valor = datos[4];
             String EstadoDato = datos[5];
             
-            // Saltar valores vacios
+            // Omitir líneas con valores no numéricos o vacíos
             if (Valor.isEmpty() || Valor.equals("-")) continue;
 
             // Convertir el valor en entero
             int ValorInt = Integer.parseInt(Valor);
                         
-            // Crear municipio
+            // Crear un objeto Municipio y agregarlo a la lista
             Municipio m = new Municipio (Territorio ,ValorInt, CodTer);
-            
             System.out.println( linea );
-            // Agregar municipio a la lista de municipios
             Municipios.add(m);
-            System.out.println( );
+            System.out.println();
+
         }
 
         // Verificar que hay municipios
@@ -65,37 +66,24 @@ public static void main (String []args) throws IOException {
             System.out.println(munici);
         }
 
-        System.out.println( );
+        System.out.println();
 
-        // Calcular la posición del medio
-        int size = Municipios.size();
-        int medio = size / 2;
-        
-        // Determinar el rango de municipios a mostrar
-        int inicio, fin;
-        
-        if (size < 3) {
-            // Si hay menos de 3 municipios, mostrar todos
-            inicio = 0;
-            fin = size;
-        } else {
-            // Calcular para obtener 3 municipios del medio
-            inicio = medio - 1;
-            fin = medio + 2;
-        }
-        
-        for (int i = inicio; i < fin; i++) {
+        System.out.println("Los tres municipios con mayor valor son:");
+
+        // Imprimir los tres municipios con mayor valor
+        int limite = Math.min(3, Municipios.size());
+        for (int i = 0; i < limite; i++) {
             Municipio m = Municipios.get(i);
             System.out.println("Territorio: " + m.getTerritorio());
             System.out.println("Valor: " + m.getValor());
             System.out.println("Código: " + m.getCodigo());
-            if (i < fin - 1) System.out.println();
+            if (i < limite - 1) System.out.println();
         }
-
+    
     } catch (EOFException e){
-        System.err.println("Error al leer el archivo.");
+    
     }
-     
+    
 }
 
 }
